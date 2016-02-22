@@ -4,10 +4,7 @@ block content
   #banner.page-header
     .row
       .col-md-6.col-sm-12
-        h1=title
+        h1= title
   .row
     .col-md-6.col-sm-12
-      p
-        | Loc8r was created to help people find places to sit down and get a bit of work done.
-        | <br /><br />
-        | Loc8r se giup ban tim dia diem lam viec thuan tien co ho tro wifi.
+      p !{content.replace(/\n/g, '<br />')}
