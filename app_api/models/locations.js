@@ -1,4 +1,4 @@
-var mongoose = require('Mongoose');
+var mongoose = require('mongoose');
 var openingTimeSchema = new mongoose.Schema({
   days: {type: String, required: true},
   opening: String,
