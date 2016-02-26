@@ -12,7 +12,7 @@ module.exports.reviewsCreate = function(req, res) {
       if (err) {
         sendJsonResponse(res, 400, err);
       } else {
-        doAddReview(res, res, location);
+        doAddReview(req, res, location);
       }
     });
   } else {
@@ -51,7 +51,7 @@ var doSetAverageRating = function(location) {
   var i, reviewCount, ratingAverage, ratingTotal;
   if (location.reviews && location.reviews.length > 0) {
     reviewCount = location.reviews.length;
-    reviewTotal = 0;
+    ratingTotal = 0;
     for (i = 0; i < reviewCount; i++) {
       ratingTotal = ratingTotal + location.reviews[i].rating;
     }

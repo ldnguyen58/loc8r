@@ -3,13 +3,13 @@ var openingTimeSchema = new mongoose.Schema({
   days: {type: String, required: true},
   opening: String,
   closing: String,
-  closed: {type: Boolean, requried: true}
+  closed: {type: Boolean, required: true}
 });
 var reviewSchema = new mongoose.Schema({
-  author: String,
+  author: {type: String, required: true},
   rating: {type: Number, required: true, min: 0, max: 5},
-  reviewText: String,
-  createOn: {type: Date, "default": Date.now}
+  reviewText: {type: String, required: true},
+  createdOn: {type: Date, "default": Date.now}
 });
 var locationSchema = new mongoose.Schema({
   name: {type: String, required: true},

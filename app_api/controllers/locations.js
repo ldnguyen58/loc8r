@@ -5,7 +5,7 @@ var sendJsonResponse = function(res, status, content) {
   res.json(content);
 };
 var theEarth = (function() {
-  var earthRadius = 6371; //km = 3959m
+  var earthRadius = 6371; //km = 3959miles
   var getDistanceFromRads = function(rads) {
     return parseFloat(rads * earthRadius);
   };
@@ -25,13 +25,16 @@ module.exports.locationsListByDistance = function(req, res) {
   if (!maxDistance) { maxDistance = 20; }
   if (!lng || !lat) {
     sendJsonResponse(res, 404, {"message": "lng and lat query parameters are required"})
+    return;
   }
   var geoOptions = {
     spherical: true,
     num: 10,
     maxDistance: theEarth.getRadsFromDistance(maxDistance)};
-  var point = {type: "Point", coordinates: [lng, lat]};
-  Loc.geoNear(point, geoOptions, function(err, results, stats) {
+  var coordinates = [lng, lat];
+  Loc.geoNear(coordinates, geoOptions, function(err, results, stats) {
+    console.log("Geo result", results);
+    console.log("Geo stats", stats);
     if (err) {
       sendJsonResponse(res, 404, err);
     } else {
@@ -42,7 +45,7 @@ module.exports.locationsListByDistance = function(req, res) {
 };
 var buildLocationList = function(results) {
   var locations = [];
-  result.forEach(function(doc) {
+  results.forEach(function(doc) {
     locations.push({
       distance: theEarth.getDistanceFromRads(doc.dis),
       name: doc.obj.name,
