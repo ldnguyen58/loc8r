@@ -1,11 +1,10 @@
-angular.module('loc8rApp', []);
+// angular.module('loc8rApp', []);
 
 var _isNumeric = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
 var formatDistance = function() {
   return function(distance) {
-      console.log("test", distance);
     var numDistance, unit;
     if (distance && _isNumeric(distance)) {
       if (distance > 1) {

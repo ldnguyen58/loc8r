@@ -33,8 +33,6 @@ module.exports.locationsListByDistance = function(req, res) {
     maxDistance: theEarth.getRadsFromDistance(maxDistance)};
   var coordinates = [lng, lat];
   Loc.geoNear(coordinates, geoOptions, function(err, results, stats) {
-    console.log("Geo result", results);
-    console.log("Geo stats", stats);
     if (err) {
       sendJsonResponse(res, 404, err);
     } else {
